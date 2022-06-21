@@ -149,9 +149,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DiscordRichPresence">
-      <Version>1.0.175</Version>
-    </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
     </PackageReference>
@@ -161,6 +158,12 @@
     <EmbeddedResource Include="Resources\Icons\pause_white.png" />
     <EmbeddedResource Include="Resources\Icons\play_white.png" />
     <EmbeddedResource Include="Resources\Icons\stop_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Libraries\discord-rpc-csharp\DiscordRPC\DiscordRPC.csproj">
+      <Project>{877bfd35-83d4-4cae-a98b-153eddf949e2}</Project>
+      <Name>DiscordRPC</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
