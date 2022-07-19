@@ -7,6 +7,10 @@
 
 MusicBee plugin that updates your Discord status with the currently playing track
 
+This branch is modified plugin that uploads images to discord using a discord bot instead of imgur
+
+Just be warned that you might get into trouble to discord if you use this. Though not against the ToS but discord has rights to terminate your account for whatever reasons as stated in their [Terms of Service](https://discord.com/terms)
+
 ## Installation
 
 Just copy all plugin files into your MusicBee Plugins directory (usually "C:\Program Files (x86)\MusicBee\Plugins").
