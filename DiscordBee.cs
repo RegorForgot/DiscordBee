@@ -377,32 +377,24 @@ namespace MusicBeePlugin
 
       _discordPresence.Details = padString(_layoutHandler.Render(_settings.PresenceDetails, metaDataDict, _settings.Separator));
 
-      var trackcnt = -1;
-      var trackno = -1;
-      try
-      {
-        trackcnt = int.Parse(_layoutHandler.Render(_settings.PresenceTrackCnt, metaDataDict, _settings.Separator));
-        trackno = int.Parse(_layoutHandler.Render(_settings.PresenceTrackNo, metaDataDict, _settings.Separator));
-      }
-#pragma warning disable RCS1075 // Avoid empty catch clause that catches System.Exception.
-      catch (Exception)
-#pragma warning restore RCS1075 // Avoid empty catch clause that catches System.Exception.
-      {
-        // ignored
-      }
+      var trackcnt = _layoutHandler.Render(_settings.PresenceTrackCnt, metaDataDict, _settings.Separator);
+      var trackno = _layoutHandler.Render(_settings.PresenceTrackNo, metaDataDict, _settings.Separator);
 
-      if (trackcnt < trackno || trackcnt <= 0 || trackno <= 0)
+      if (int.TryParse(trackcnt, out var trackCount) && int.TryParse(trackno, out var trackNumber))
       {
-        _discordPresence.Party = null;
-      }
-      else
-      {
-        _discordPresence.Party = new Party
+        if (trackCount < trackNumber || trackCount <= 0 || trackNumber <= 0)
         {
-          ID = "aaaa",
-          Max = trackcnt,
-          Size = trackno
-        };
+          _discordPresence.Party = null;
+        }
+        else
+        {
+          _discordPresence.Party = new Party
+          {
+            ID = "aaaa",
+            Max = trackCount,
+            Size = trackNumber
+          };
+        }
       }
 
       if (!_settings.UpdatePresenceWhenStopped && (playerGetPlayState == PlayState.Paused || playerGetPlayState == PlayState.Stopped))
