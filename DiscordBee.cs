@@ -253,7 +253,7 @@ namespace MusicBeePlugin
         Assets = new Assets(),
         Party = new Party(),
         Timestamps = new Timestamps(),
-        Type = ActivityType.Playing
+        Type = ActivityType.Listening
       };
 
       // Discord allows only strings with a min length of 2 or the update fails
