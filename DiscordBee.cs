@@ -341,18 +341,9 @@ namespace MusicBeePlugin
 
       if (_settings.ShowTime)
       {
-        if (_settings.ShowRemainingTime)
-        {
-          // show remaining time
-          // subtract current track position from total duration for position seeking
-          var totalRemainingDuration = _mbApiInterface.NowPlaying_GetDuration() - _mbApiInterface.Player_GetPosition();
-          _discordPresence.Timestamps.EndUnixMilliseconds = (ulong)(Math.Round(t.TotalSeconds) + Math.Round(totalRemainingDuration / 1000.0));
-        }
-        else
-        {
-          // show elapsed time
-          _discordPresence.Timestamps.StartUnixMilliseconds = (ulong)(Math.Round(t.TotalSeconds) - Math.Round(_mbApiInterface.Player_GetPosition() / 1000.0));
-        }
+        var totalRemainingDuration = _mbApiInterface.NowPlaying_GetDuration() - _mbApiInterface.Player_GetPosition();
+        _discordPresence.Timestamps.EndUnixMilliseconds = (ulong)(Math.Round(t.TotalSeconds) + Math.Round(totalRemainingDuration / 1000.0));
+        _discordPresence.Timestamps.StartUnixMilliseconds = (ulong)(Math.Round(t.TotalSeconds) - Math.Round(_mbApiInterface.Player_GetPosition() / 1000.0));
       }
 
       switch (playerGetPlayState)
@@ -382,11 +373,7 @@ namespace MusicBeePlugin
 
       if (int.TryParse(trackcnt, out var trackCount) && int.TryParse(trackno, out var trackNumber))
       {
-        if (trackCount < trackNumber || trackCount <= 0 || trackNumber <= 0)
-        {
-          _discordPresence.Party = null;
-        }
-        else
+        if (trackCount > trackNumber && trackCount > 0 && trackNumber > 0)
         {
           _discordPresence.Party = new Party
           {

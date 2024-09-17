@@ -139,14 +139,6 @@ namespace MusicBeePlugin
       set => SetIfChanged("_showTime", value);
     }
 
-    [DataMember] private bool? _showRemainingTime;
-
-    public bool ShowRemainingTime
-    {
-      get => _showRemainingTime == true;
-      set => SetIfChanged("_showRemainingTime", value);
-    }
-
     [DataMember] private bool? _textOnly;
 
     public bool TextOnly

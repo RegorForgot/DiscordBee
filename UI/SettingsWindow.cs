@@ -61,7 +61,6 @@ namespace MusicBeePlugin.UI
       textBoxImgurClientId.Text = settings.ImgurClientId.Equals(Settings.defaults["ImgurClientId"]) ? "" : settings.ImgurClientId;
       checkBoxPresenceUpdate.Checked = settings.UpdatePresenceWhenStopped;
       checkBoxShowTime.Checked = settings.ShowTime;
-      checkBoxShowRemainingTime.Checked = settings.ShowRemainingTime;
       checkBoxTextOnly.Checked = settings.TextOnly;
       checkBoxShowPlayState.Checked = settings.ShowPlayState;
       checkBoxShowOnlyNonPlayingState.Checked = settings.ShowOnlyNonPlayingState;
@@ -105,7 +104,6 @@ namespace MusicBeePlugin.UI
       _settings.ImgurClientId = string.IsNullOrWhiteSpace(textBoxImgurClientId.Text) ? null : textBoxImgurClientId.Text;
       _settings.UpdatePresenceWhenStopped = checkBoxPresenceUpdate.Checked;
       _settings.ShowTime = checkBoxShowTime.Checked;
-      _settings.ShowRemainingTime = checkBoxShowRemainingTime.Checked;
       _settings.TextOnly = checkBoxTextOnly.Checked;
       _settings.ShowPlayState = checkBoxShowPlayState.Checked;
       _settings.ShowOnlyNonPlayingState = checkBoxShowOnlyNonPlayingState.Checked;
