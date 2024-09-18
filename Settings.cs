@@ -24,6 +24,8 @@ namespace MusicBeePlugin
       {"PresenceTrackNo", "[TrackNo]"},
       {"ButtonLabel", "View Last.fm Info"},
       {"ButtonUrl", "https://www.last.fm/music/[Artist]/_/[TrackTitle]"},
+      {"ButtonLabel2", "View Last.fm Info"},
+      {"ButtonUrl2", "https://www.last.fm/music/[Artist]/_/[TrackTitle]"},
       {"DiscordAppId", "409394531948298250"}, // prod
       //{"DiscordAppId", "408977077799354379"}, // dev
       {"ImgurClientId", "09bef4c058080cd"},
@@ -203,12 +205,52 @@ namespace MusicBeePlugin
       }
     }
 
-    [DataMember] private bool? _showButton;
+    [DataMember] private string _buttonLabel2;
 
-    public bool ShowButton
+    public string ButtonLabel2
     {
-      get => _showButton == true;
-      set => SetIfChanged("_showButton", value);
+      get => string.IsNullOrEmpty(_buttonLabel2) ? defaults["ButtonLabel2"] : _buttonLabel2;
+      set
+      {
+        if (value?.Equals(defaults["ButtonLabel2"]) == true)
+        {
+          _buttonLabel2 = null;
+          return;
+        }
+        SetIfChanged("_buttonLabel2", value);
+      }
+    }
+
+    [DataMember] private string _buttonUrl2;
+
+    public string ButtonUrl2
+    {
+      get => string.IsNullOrEmpty(_buttonLabel2) ? defaults["ButtonUrl2"] : _buttonUrl2;
+      set
+      {
+        if (value?.Equals(defaults["ButtonUrl2"]) == true)
+        {
+          _buttonUrl2 = null;
+          return;
+        }
+        SetIfChanged("_buttonUrl2", value);
+      }
+    }
+
+    [DataMember] private bool? _button1Enabled;
+
+    public bool Button1Enabled
+    {
+      get => _button1Enabled == true;
+      set => SetIfChanged("_button1Enabled", value);
+    }
+
+    [DataMember] private bool? _button2Enabled;
+
+    public bool Button2Enabled
+    {
+      get => _button2Enabled == true;
+      set => SetIfChanged("_button2Enabled", value);
     }
 
     #endregion

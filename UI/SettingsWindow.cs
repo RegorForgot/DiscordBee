@@ -67,7 +67,10 @@ namespace MusicBeePlugin.UI
       checkBoxArtworkUpload.Checked = settings.UploadArtwork;
       customButtonLabel.Text = settings.ButtonLabel;
       customButtonUrl.Text = settings.ButtonUrl;
-      customButtonToggle.Checked = settings.ShowButton;
+      customButtonLabel2.Text = settings.ButtonLabel2;
+      customButtonUrl2.Text = settings.ButtonUrl2;
+      customButtonEnable.Checked = settings.Button1Enabled;
+      customButtonEnable2.Checked = settings.Button2Enabled;
 
       ValidateInputs();
     }
@@ -110,7 +113,10 @@ namespace MusicBeePlugin.UI
       _settings.UploadArtwork = checkBoxArtworkUpload.Checked;
       _settings.ButtonUrl = customButtonUrl.Text;
       _settings.ButtonLabel = customButtonLabel.Text;
-      _settings.ShowButton = customButtonToggle.Checked;
+      _settings.ButtonLabel2 = customButtonLabel2.Text;
+      _settings.ButtonUrl2 = customButtonUrl2.Text;
+      _settings.Button1Enabled = customButtonEnable.Checked;
+      _settings.Button2Enabled = customButtonEnable2.Checked;
 
       if (_defaultsRestored && !_settings.IsDirty)
       {
@@ -171,25 +177,32 @@ namespace MusicBeePlugin.UI
         return false;
       }
 
-      bool validateUri()
+      // First Button validation
+      if (customButtonEnable.Checked && (!validateUriFromTextBox(customButtonUrl) || string.IsNullOrEmpty(customButtonLabel.Text)))
       {
-        if (!ValidationHelpers.ValidateUri(customButtonUrl.Text))
-        {
-          customButtonUrl.BackColor = Color.PaleVioletRed;
-          return false;
-        }
-
-        customButtonUrl.BackColor = Color.FromArgb(114, 137, 218);
-        return true;
+        return false;
       }
 
-      if (!validateUri())
+      // Second Button validation
+      if (customButtonEnable2.Checked && (!validateUriFromTextBox(customButtonUrl2) || string.IsNullOrEmpty(customButtonLabel2.Text)))
       {
         return false;
       }
 
       ResetErrorIndications();
 
+      return true;
+    }
+
+    private bool validateUriFromTextBox(TextBox textBox)
+    {
+      if (!ValidationHelpers.ValidateUri(textBox.Text))
+      {
+        textBox.BackColor = Color.PaleVioletRed;
+        return false;
+      }
+
+      textBox.BackColor = Color.FromArgb(114, 137, 218);
       return true;
     }
 

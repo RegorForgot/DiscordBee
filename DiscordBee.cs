@@ -9,6 +9,7 @@ namespace MusicBeePlugin
   using System.Collections.Generic;
   using System.Diagnostics;
   using System.IO;
+  using System.Linq;
   using System.Reflection;
   using System.Text;
   using System.Text.RegularExpressions;
@@ -257,7 +258,7 @@ namespace MusicBeePlugin
       // Discord allows only strings with a min length of 2 or the update fails
       // so add some exotic space (Mongolian vowel separator) to the string if it is smaller
       // Discord also disallows strings bigger than 128bytes so handle that as well
-      string padString(string input)
+      string padString(string input, int maxLength = 128)
       {
         if (!string.IsNullOrEmpty(input))
         {
@@ -265,9 +266,9 @@ namespace MusicBeePlugin
           {
             return input + "\u180E";
           }
-          if (Encoding.UTF8.GetBytes(input).Length > 128)
+          if (Encoding.UTF8.GetBytes(input).Length > maxLength)
           {
-            byte[] buffer = new byte[128];
+            byte[] buffer = new byte[maxLength];
             char[] inputChars = input.ToCharArray();
             Encoding.UTF8.GetEncoder().Convert(
                 chars: inputChars,
@@ -287,23 +288,38 @@ namespace MusicBeePlugin
       }
 
       // Button Functionality
-      if (_settings.ShowButton)
+      bool tryCreateButton(string label, string uriValue, out Button button)
       {
-        var uri = _layoutHandler.RenderUrl(_settings.ButtonUrl, metaDataDict, '\\');
-        Debug.WriteLine($"Url: {uri}");
-
-        // Validate the URL again.
-        if (ValidationHelpers.ValidateUri(uri))
+        var uri = _layoutHandler.RenderUrl(uriValue, metaDataDict, '\\');
+        if (ValidationHelpers.ValidateUri(uriValue) && !string.IsNullOrEmpty(label))
         {
-          _discordPresence.Buttons = new Button[]
+          button = new Button
           {
-            new Button
-            {
-              Label = padString(_settings.ButtonLabel),
-              Url = uri
-            }
+            Label = padString(label, 32),
+            Url = uri
           };
+
+          return true;
         }
+
+        button = null;
+        return false;
+      }
+
+      var buttons = new List<Button>();
+      if (_settings.Button1Enabled && tryCreateButton(_settings.ButtonLabel, _settings.ButtonUrl, out var button1))
+      {
+        buttons.Add(button1);
+      }
+
+      if (_settings.Button2Enabled && tryCreateButton(_settings.ButtonLabel2, _settings.ButtonUrl2, out var button2))
+      {
+        buttons.Add(button2);
+      }
+
+      if (buttons.Any())
+      {
+        _discordPresence.Buttons = buttons.ToArray();
       }
 
       void SetImage(string name, bool forceHideSmallImage = false)

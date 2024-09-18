@@ -48,7 +48,6 @@ namespace MusicBeePlugin.UI
             this.panel2 = new System.Windows.Forms.Panel();
             this.labelImgurClientId = new System.Windows.Forms.Label();
             this.textBoxImgurClientId = new System.Windows.Forms.TextBox();
-            this.customButtonToggle = new System.Windows.Forms.CheckBox();
             this.checkBoxShowOnlyNonPlayingState = new System.Windows.Forms.CheckBox();
             this.checkBoxShowPlayState = new System.Windows.Forms.CheckBox();
             this.checkBoxShowTime = new System.Windows.Forms.CheckBox();
@@ -57,6 +56,10 @@ namespace MusicBeePlugin.UI
             this.textBoxDiscordAppId = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.customButtonEnable2 = new System.Windows.Forms.CheckBox();
+            this.customButtonEnable = new System.Windows.Forms.CheckBox();
+            this.customButtonUrl2 = new System.Windows.Forms.TextBox();
+            this.customButtonLabel2 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.customButtonUrl = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -283,7 +286,6 @@ namespace MusicBeePlugin.UI
             this.panel2.BackColor = System.Drawing.Color.Transparent;
             this.panel2.Controls.Add(this.labelImgurClientId);
             this.panel2.Controls.Add(this.textBoxImgurClientId);
-            this.panel2.Controls.Add(this.customButtonToggle);
             this.panel2.Controls.Add(this.checkBoxShowOnlyNonPlayingState);
             this.panel2.Controls.Add(this.checkBoxShowPlayState);
             this.panel2.Controls.Add(this.checkBoxShowTime);
@@ -295,10 +297,10 @@ namespace MusicBeePlugin.UI
             this.panel2.Controls.Add(this.checkBoxTextOnly);
             this.panel2.Controls.Add(this.checkBoxPresenceUpdate);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 157);
+            this.panel2.Location = new System.Drawing.Point(0, 187);
             this.panel2.MinimumSize = new System.Drawing.Size(0, 100);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(524, 204);
+            this.panel2.Size = new System.Drawing.Size(524, 174);
             this.panel2.TabIndex = 1;
             // 
             // labelImgurClientId
@@ -320,19 +322,6 @@ namespace MusicBeePlugin.UI
             this.textBoxImgurClientId.Size = new System.Drawing.Size(151, 25);
             this.textBoxImgurClientId.TabIndex = 20;
             this.textBoxImgurClientId.TextChanged += new System.EventHandler(this.textBoxImgurClientId_TextChanged);
-            // 
-            // customButtonToggle
-            // 
-            this.customButtonToggle.AutoSize = true;
-            this.customButtonToggle.ForeColor = System.Drawing.Color.Black;
-            this.customButtonToggle.Location = new System.Drawing.Point(266, 84);
-            this.customButtonToggle.Margin = new System.Windows.Forms.Padding(4);
-            this.customButtonToggle.Name = "customButtonToggle";
-            this.customButtonToggle.Padding = new System.Windows.Forms.Padding(2);
-            this.customButtonToggle.Size = new System.Drawing.Size(135, 21);
-            this.customButtonToggle.TabIndex = 18;
-            this.customButtonToggle.Text = "Enable Custom Button";
-            this.customButtonToggle.UseVisualStyleBackColor = true;
             // 
             // checkBoxShowOnlyNonPlayingState
             // 
@@ -434,6 +423,10 @@ namespace MusicBeePlugin.UI
             // 
             this.panel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.panel4.Controls.Add(this.customButtonEnable2);
+            this.panel4.Controls.Add(this.customButtonEnable);
+            this.panel4.Controls.Add(this.customButtonUrl2);
+            this.panel4.Controls.Add(this.customButtonLabel2);
             this.panel4.Controls.Add(this.label9);
             this.panel4.Controls.Add(this.customButtonUrl);
             this.panel4.Controls.Add(this.label8);
@@ -451,8 +444,48 @@ namespace MusicBeePlugin.UI
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(524, 157);
+            this.panel4.Size = new System.Drawing.Size(524, 187);
             this.panel4.TabIndex = 1;
+            // 
+            // customButtonEnable2
+            // 
+            this.customButtonEnable2.AutoSize = true;
+            this.customButtonEnable2.Location = new System.Drawing.Point(499, 153);
+            this.customButtonEnable2.Name = "customButtonEnable2";
+            this.customButtonEnable2.Size = new System.Drawing.Size(15, 14);
+            this.customButtonEnable2.TabIndex = 24;
+            this.customButtonEnable2.UseVisualStyleBackColor = true;
+            // 
+            // customButtonEnable
+            // 
+            this.customButtonEnable.AutoSize = true;
+            this.customButtonEnable.Location = new System.Drawing.Point(499, 122);
+            this.customButtonEnable.Name = "customButtonEnable";
+            this.customButtonEnable.Size = new System.Drawing.Size(15, 14);
+            this.customButtonEnable.TabIndex = 23;
+            this.customButtonEnable.UseVisualStyleBackColor = true;
+            // 
+            // customButtonUrl2
+            // 
+            this.customButtonUrl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.customButtonUrl2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.customButtonUrl2.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.customButtonUrl2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(230)))), ((int)(((byte)(246)))));
+            this.customButtonUrl2.Location = new System.Drawing.Point(198, 148);
+            this.customButtonUrl2.Name = "customButtonUrl2";
+            this.customButtonUrl2.Size = new System.Drawing.Size(290, 25);
+            this.customButtonUrl2.TabIndex = 22;
+            // 
+            // customButtonLabel2
+            // 
+            this.customButtonLabel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(137)))), ((int)(((byte)(218)))));
+            this.customButtonLabel2.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.customButtonLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(230)))), ((int)(((byte)(246)))));
+            this.customButtonLabel2.Location = new System.Drawing.Point(12, 148);
+            this.customButtonLabel2.Name = "customButtonLabel2";
+            this.customButtonLabel2.Size = new System.Drawing.Size(177, 25);
+            this.customButtonLabel2.TabIndex = 21;
             // 
             // label9
             // 
@@ -461,9 +494,9 @@ namespace MusicBeePlugin.UI
             this.label9.ForeColor = System.Drawing.Color.White;
             this.label9.Location = new System.Drawing.Point(198, 99);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(241, 15);
+            this.label9.Size = new System.Drawing.Size(235, 15);
             this.label9.TabIndex = 19;
-            this.label9.Text = "Custom Button Url (Supports Placeholders)";
+            this.label9.Text = "Custom Button Url (Supports Placeholder)";
             // 
             // customButtonUrl
             // 
@@ -527,7 +560,6 @@ namespace MusicBeePlugin.UI
     private System.Windows.Forms.TextBox customButtonUrl;
     private System.Windows.Forms.Label label9;
     private System.Windows.Forms.Label label8;
-    private System.Windows.Forms.CheckBox customButtonToggle;
     private System.Windows.Forms.TextBox customButtonLabel;
 
     #endregion
@@ -559,5 +591,9 @@ namespace MusicBeePlugin.UI
     private System.Windows.Forms.CheckBox checkBoxShowOnlyNonPlayingState;
         private System.Windows.Forms.Label labelImgurClientId;
         private System.Windows.Forms.TextBox textBoxImgurClientId;
-    }
+    private System.Windows.Forms.TextBox customButtonUrl2;
+    private System.Windows.Forms.TextBox customButtonLabel2;
+    private System.Windows.Forms.CheckBox customButtonEnable2;
+    private System.Windows.Forms.CheckBox customButtonEnable;
+  }
 }
