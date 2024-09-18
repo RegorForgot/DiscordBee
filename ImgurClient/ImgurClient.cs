@@ -4,8 +4,6 @@ namespace MusicBeePlugin.ImgurClient
   using RestSharp;
   using RestSharp.Serializers.NewtonsoftJson;
   using System;
-  using System.Net;
-  using System.Threading;
   using System.Threading.Tasks;
 
   public class ImgurClient : IDisposable
@@ -21,7 +19,7 @@ namespace MusicBeePlugin.ImgurClient
         ThrowOnAnyError = true,
         FollowRedirects = true,
         PreAuthenticate = true,
-        MaxTimeout = 20 * 1000,
+        Timeout = TimeSpan.FromSeconds(20),
         //Proxy = new WebProxy("http://localhost:8080"),
         ConfigureMessageHandler = orig =>
         {
@@ -67,13 +65,13 @@ namespace MusicBeePlugin.ImgurClient
 
     public async Task<ImgurAlbum> GetAlbum(string albumHash)
     {
-      var response = await _client.GetJsonAsync<ImgurResponse<ImgurAlbum>>("album/{albumHash}", new { albumHash });
+      var response = await _client.GetAsync<ImgurResponse<ImgurAlbum>>("album/{albumHash}", new { albumHash });
       return GetResponseData(response);
     }
 
     public async Task<ImgurImage[]> GetAlbumImages(string albumHash)
     {
-      var response = await _client.GetJsonAsync<ImgurResponse<ImgurImage[]>>("album/{albumHash}/images", new { albumHash });
+      var response = await _client.GetAsync<ImgurResponse<ImgurImage[]>>("album/{albumHash}/images", new { albumHash });
       return GetResponseData(response);
     }
 
