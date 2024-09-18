@@ -251,8 +251,6 @@ namespace MusicBeePlugin
       RichPresence _discordPresence = new RichPresence
       {
         Assets = new Assets(),
-        Party = new Party(),
-        Timestamps = new Timestamps(),
         Type = ActivityType.Listening
       };
 
@@ -339,11 +337,14 @@ namespace MusicBeePlugin
 
       var t = DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1));
 
-      if (_settings.ShowTime)
+      if (_settings.ShowTime && playerGetPlayState == PlayState.Playing)
       {
         var totalRemainingDuration = _mbApiInterface.NowPlaying_GetDuration() - _mbApiInterface.Player_GetPosition();
-        _discordPresence.Timestamps.EndUnixMilliseconds = (ulong)(Math.Round(t.TotalSeconds) + Math.Round(totalRemainingDuration / 1000.0));
-        _discordPresence.Timestamps.StartUnixMilliseconds = (ulong)(Math.Round(t.TotalSeconds) - Math.Round(_mbApiInterface.Player_GetPosition() / 1000.0));
+        _discordPresence.Timestamps = new Timestamps
+        {
+          StartUnixMilliseconds = (ulong)(Math.Round(t.TotalSeconds) - Math.Round(_mbApiInterface.Player_GetPosition() / 1000.0)),
+          EndUnixMilliseconds = (ulong)(Math.Round(t.TotalSeconds) + Math.Round(totalRemainingDuration / 1000.0))
+        };
       }
 
       switch (playerGetPlayState)
@@ -353,13 +354,9 @@ namespace MusicBeePlugin
           break;
         case PlayState.Stopped:
           SetImage(AssetManager.ASSET_STOP);
-          _discordPresence.Timestamps.Start = null;
-          _discordPresence.Timestamps.End = null;
           break;
         case PlayState.Paused:
           SetImage(AssetManager.ASSET_PAUSE);
-          _discordPresence.Timestamps.Start = null;
-          _discordPresence.Timestamps.End = null;
           break;
         case PlayState.Undefined:
         case PlayState.Loading:
