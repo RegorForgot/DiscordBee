@@ -188,10 +188,7 @@
     <EmbeddedResource Include="Resources\Icons\stop_white.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="3rdparty\discord-rpc-sharp\DiscordRPC\DiscordRPC.csproj">
-      <Project>{4af0c232-feb9-426e-9ca2-ac3813498a0e}</Project>
-      <Name>DiscordRPC</Name>
-    </ProjectReference>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
