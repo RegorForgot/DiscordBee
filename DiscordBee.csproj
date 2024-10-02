@@ -190,6 +190,12 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="3rdparty\discord-rpc-sharp\DiscordRPC\DiscordRPC.csproj">
+      <Project>{2a7a4852-4d3b-4f55-bba8-6f4750eeae8c}</Project>
+      <Name>DiscordRPC</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>@echo on 

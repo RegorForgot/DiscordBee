@@ -225,7 +225,7 @@ namespace MusicBeePlugin
 
     public string ButtonUrl2
     {
-      get => string.IsNullOrEmpty(_buttonLabel2) ? defaults["ButtonUrl2"] : _buttonUrl2;
+      get => string.IsNullOrEmpty(_buttonUrl2) ? defaults["ButtonUrl2"] : _buttonUrl2;
       set
       {
         if (value?.Equals(defaults["ButtonUrl2"]) == true)
